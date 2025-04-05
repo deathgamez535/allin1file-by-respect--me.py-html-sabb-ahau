@@ -1,0 +1,8 @@
+Tracking numbers in text:
+{'123': 4, '456': 1, '789': 1}
+
+Tracking numbers in list:
+{123: 4, 456: 2, 789: 1, 101: 1, 202: 1}
+
+Tracking numbers in file:
+{'123': 4, '456': 1, '789': 1}

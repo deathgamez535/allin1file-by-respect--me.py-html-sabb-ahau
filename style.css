@@ -1,0 +1,128 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e; /* Dark background */
+    color: #ffffff; /* Light text color */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+a {
+    color: #4a90e2; /* Link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header Styles */
+header {
+    background-color: #2a2a2a; /* Darker header */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: #4a90e2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.btn-new-chat,
+.btn-chatgpt,
+.btn-login,
+.btn-signup {
+    background-color: #4a90e2; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-new-chat:hover,
+.btn-chatgpt:hover,
+.btn-login:hover,
+.btn-signup:hover {
+    background-color: #357ab8; /* Darker shade on hover */
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Chat Form Styles */
+.chat-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-input {
+    width: 100%;
+    max-width: 600px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #2a2a2a; /* Input background */
+    color: #ffffff; /* Input text color */
+    resize: none;
+}
+
+.chat-input::placeholder {
+    color: #888; /* Placeholder color */
+}
+
+.btn-submit {
+    background-color: #4a90e2; /* Submit button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #357ab8; /* Darker shade on hover */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #2a2a2a; /* Dark footer */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

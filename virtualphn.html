@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsung Galaxy A20s Emulator - 3D</title>
+    <style>
+        .home-screen {
+    inline-size: 100%;
+    block-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 कॉलम में ऐप्स दिखेंगे */
+    gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-items: center;
+}
+
+.app {
+    inline-size: 50px;  /* ऐप्स का साइज छोटा किया */
+    block-size: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 10px; /* टेक्स्ट भी छोटा किया */
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.app img {
+    inline-size: 30px; /* आइकन छोटा किया */
+    block-size: 30px;
+}
+
+.app:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+        
+    .screen {
+        inline-size: 100%;
+        block-size: 100%;
+        background: url('OIP.jpg') no-repeat center center;
+        background-size: cover;
+        position: relative;
+        transition: filter 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #a37f7f, #435d7e);
+            margin: 0;
+            padding: 0;
+            block-size: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        
+        .phone-container {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .phone {
+            inline-size: 320px;
+            block-size: 640px;
+            background: black;
+            border-radius: 30px;
+            border: 6px solid #222;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: rotateX(10deg) rotateY(10deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .phone:hover {
+            transform: rotateX(0deg) rotateY(0deg);
+            box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .phone.off .screen {
+            filter: brightness(0);
+            transition: filter 1s ease;
+        }
+
+        .lock-screen {
+            position: absolute;
+            inline-size: 100%;
+            block-size: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 2;
+            transition: opacity 0.5s ease;
+        }
+
+        .lock-screen input {
+            inline-size: 80px;
+            block-size: 40px;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid white;
+            background: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .lock-screen button {
+            inline-size: 50px;
+            block-size: 50px;
+            margin: 5px;
+            font-size: 18px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .lock-screen .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .unlock-button {
+            background: green;
+            color: white;
+            padding: 10px;
+            margin-block-start: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .power-button {
+            inline-size: 50px;
+            block-size: 50px;
+            background: linear-gradient(145deg, #333, #111);
+            border-radius: 50%;
+            position: absolute;
+            inset-block-end: 20px;
+            inset-inline-start: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            -webkit-user-select: none;
+            user-select: none;
+            box-shadow: inset 2px 2px 5px #000, inset -2px -2px 5px #444;
+        }
+
+        .power-button:hover {
+            background: #666;
+            box-shadow: inset 2px 2px 10px #000, inset -2px -2px 10px #555;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="phone-container" id="phoneContainer">
+        <div class="phone" id="phone">
+            <div class="lock-screen" id="lockScreen">
+                <h2>Enter Passcode</h2>
+                <input type="password" id="passcode" maxlength="8" disabled title="Enter your passcode" placeholder="Passcode">
+                <div class="buttons">
+                    <button onclick="enterDigit('1')">1</button>
+                    <button onclick="enterDigit('2')">2</button>
+                    <button onclick="enterDigit('3')">3</button>
+                    <button onclick="enterDigit('4')">4</button>
+                    <button onclick="enterDigit('5')">5</button>
+                    <button onclick="enterDigit('6')">6</button>
+                    <button onclick="enterDigit('7')">7</button>
+                    <button onclick="enterDigit('8')">8</button>
+                    <button onclick="enterDigit('9')">9</button>
+                    <button onclick="clearCode()">C</button>
+                    <button onclick="enterDigit('0')">0</button>
+                    <button class="unlock-button" onclick="unlock()">✔</button>
+                </div>
+            </div>
+            <div class="status-bar">
+                <span id="time">00:00:00</span>
+                <span>📶 🔋</span>
+            </div>
+            <div class="screen" id="screen">
+                <div class="home-screen" id="homeScreen">
+                    <div class="app" onclick="openApp('youtube', 'https://www.youtube.com/')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube">
+                        YouTube
+                    </div>
+                    <div class="app" onclick="openApp('playstore', 'https://play.google.com/store')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Google_Play_Store_badge_EN.svg" alt="Play Store">
+                        Play Store
+                    </div>
+                    <div class="app" onclick="openApp('termux', 'https://termux.com/')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Termux-app-icon.png" alt="Termux">
+                        Termux
+                    </div>
+                    <div class="app" onclick="openApp('chatgpt', 'https://chat.openai.com/')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
+                        ChatGPT
+                    </div>
+                </div>
+            </div>
+            <div class="power-button" id="powerButton" onclick="powerToggle()">⏻</div>
+        </div>
+    </div>
+
+    <script>
+        let enteredCode = "";
+
+        function enterDigit(digit) {
+            if (enteredCode.length < 3) {
+                enteredCode += digit;
+                document.getElementById("passcode").value = enteredCode;
+            }
+        }
+
+        function clearCode() {
+            enteredCode = "";
+            document.getElementById("passcode").value = "";
+        }
+
+        function unlock() {
+            if (enteredCode === "88") {
+                document.getElementById("lockScreen").classList.add("hide");
+            } else {
+                alert("Incorrect code! Try again.");
+                clearCode();
+            }
+        }
+
+        function updateTime() {
+            document.getElementById('time').textContent = new Date().toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function powerToggle() {
+            let phone = document.getElementById("phone");
+            phone.classList.toggle("off");
+
+            if (!phone.classList.contains("off")) {
+                document.getElementById("lockScreen").classList.remove("hide");
+            }
+        }
+    </script>
+    
+    
+    
+</body>
+</html>
